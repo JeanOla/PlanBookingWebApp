@@ -1,0 +1,176 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - PlaneBookingWebApp</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/fontawesome/css/all.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/DataTable2/datatables.css" asp-append-version="true" />
+    <script src="~/js/chart.js" asp-append-version="true"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding-top: 56px; /* Adjusted for fixed navbar */
+        }
+
+        .navbar {
+            background-color: #007bff; /* Bootstrap primary color */
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .sidebar {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            height: 100vh; /* Full height for sidebar */
+            position: fixed;
+            top: 56px; /* Adjusted to below the navbar */
+            left: 0;
+            overflow-y: auto;
+        }
+
+            .sidebar .nav-link {
+                color: #333;
+            }
+
+                .sidebar .nav-link.active {
+                    color: #007bff;
+                    font-weight: bold;
+                }
+
+            .sidebar .submenu {
+                padding-left: 1rem;
+            }
+
+        .main-content {
+            margin-left: 200px; 
+            padding: 2rem;
+        }
+
+        footer {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Topbar Menu -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-primary fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand text-white" href="#">Plane Booking Web Application</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-collapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbar-collapse">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link text-white"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar Menu -->
+    <nav class="sidebar">
+        <div class="sidebar-sticky">
+            <ul class="nav flex-column" id="nav_accordion">
+                <!-- Dashboard Item -->
+                <li class="nav-item active">
+                    <a class="nav-link text-secondary" asp-area="" asp-controller="Home" asp-action="Index">
+                        <i class="fas fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <!-- Airport Dropdown -->
+                <li class="nav-item has-submenu mt-3">
+                    <a class="nav-link collapsed text-secondary" data-bs-toggle="collapse" data-bs-target="#AirportMenu" aria-expanded="false" aria-controls="AirportMenu">
+                        <i class="fas fa-plane-arrival"></i>
+                        <span>Airport</span>
+                    </a>
+                    <ul class="submenu collapse" id="AirportMenu">
+                        <li>
+                            <a class="nav-link text-secondary" asp-area="" asp-controller="Airport" asp-action="Index">Airport List</a>
+                        </li>
+                        <li>
+                            <a class="nav-link text-secondary" asp-area="" asp-controller="Airport" asp-action="Create">Add Airport</a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- Plane Dropdown -->
+                <li class="nav-item has-submenu mt-3">
+                    <a class="nav-link collapsed text-secondary" data-bs-toggle="collapse" data-bs-target="#PlaneSubmenu" aria-expanded="false" aria-controls="PlaneSubmenu">
+                        <i class="fas fa-plane"></i>
+                        <span>Plane</span>
+                    </a>
+                    <ul class="submenu collapse" id="PlaneSubmenu">
+                        <li>
+                            <a class="nav-link text-secondary" asp-area="" asp-controller="Plane" asp-action="Index">Plane List</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-secondary" asp-area="" asp-controller="Plane" asp-action="Create">Create Plane</a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- Flight Dropdown -->
+                <li class="nav-item has-submenu mt-3">
+                    <a class="nav-link collapsed text-secondary" data-bs-toggle="collapse" data-bs-target="#FlightSubmenu" aria-expanded="false" aria-controls="FlightSubmenu">
+                        <i class="fas fa-plane-departure"></i>
+                        <span>Flight</span>
+                    </a>
+                    <ul class="submenu collapse" id="FlightSubmenu">
+                        <li>
+                            <a class="nav-link text-secondary" asp-area="" asp-controller="Flight" asp-action="Index">Flight List</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-secondary" asp-area="" asp-controller="Flight" asp-action="Create">Create Flight</a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- Booking Dropdown -->
+                <li class="nav-item has-submenu mt-3">
+                    <a class="nav-link collapsed text-secondary" data-bs-toggle="collapse" data-bs-target="#BookingSubmenu" aria-expanded="false" aria-controls="BookingSubmenu">
+                        <i class="fas fa-book"></i>
+                        <span>Booking</span>
+                    </a>
+                    <ul class="submenu collapse" id="BookingSubmenu">
+                        <li>
+                            <a class="nav-link text-secondary" asp-area="" asp-controller="Booking" asp-action="Index">Booking List</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-secondary" asp-area="" asp-controller="Booking" asp-action="Create">Create Booking</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        @RenderBody()
+    </main>
+
+    <footer>
+        &sample; 2024 PlaneBookingWebApp. All rights reserved.
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/DataTable2/datatables.min.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>

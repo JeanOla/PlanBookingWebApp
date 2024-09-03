@@ -1,0 +1,59 @@
+﻿@model Plane
+
+<div class="accordion mt-4">
+    <div class="accordion-item">
+        <h1 class="accordion-header" id="headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Add Airport
+            </button>
+        </h1>
+        <div class="container-fluid  py-2">
+            <div class="row">
+                <div class="col-md-12 bg-light rounded">
+                    <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#" aria-current="page">Plane</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Create Plane</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionBasic">
+            <div class="accordion-body">
+                <div class="container-fluid">
+                    <form asp-action="Create" id="form-spinner" method="post" asp-controller="Plane">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label asp-for="Code" class="control-label">>Airplane Code</label>
+                                    <input type="text" asp-for="Code" class="form-control" />
+                                    <span asp-validation-for="Code" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Airline" class="control-label">Airline</label>
+                                    <input type="text" asp-for="Airline" class="form-control" />
+                                    <span asp-validation-for="Airline" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Model" class="control-label">Model</label>
+                                    <input type="text" asp-for="Model" class="form-control" />
+                                    <span asp-validation-for="Model" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Create" class="btn btn-primary mt-3" />
+                        </div>
+                    </form>
+
+                    <div>
+                        <a asp-action="Index">Back to List</a>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

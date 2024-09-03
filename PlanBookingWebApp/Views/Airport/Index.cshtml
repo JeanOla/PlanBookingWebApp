@@ -1,0 +1,87 @@
+﻿@model List<Airport>
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div class="accordion mt-4">
+    <div class="accordion-item">
+        <h1 class="accordion-header" id="headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Doctor Specialization List
+            </button>
+        </h1>
+        <div class="container-fluid  py-2">
+            <div class="row">
+                <div class="col-md-12 bg-light rounded">
+                    <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#" aria-current="page">Airport</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Airport list</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionBasic">
+            <div class="accordion-body">
+                <div class="container-fluid">
+
+                    <div class="row">
+                        <div class="col-md-12 bg-light rounded">
+                            <table class="table table-hover table-responsive-lg rounded" id="doctorList">
+                                <thead class="thead-dark bg-primary">
+                                    <tr>
+                                        <th scope="col" style="text-align: center" class="text-white">Airport Name</th>
+                                        <th scope="col" style="text-align: center" class="text-white">Address</th>
+                                        <th scope="col" style="text-align: center" class="text-white">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var p in Model)
+                                    {
+
+                                        <tr>
+                                            
+
+                                            <td style="text-align: center">@p.AirportName</td>
+                                            <td style="text-align: center">@p.Address</td>
+                                            <td style="text-align: center">
+                                                <a class="btn btn-secondary" asp-controller="Airport" title="Update" asp-action="Update" asp-route-Id="@p.AirportId">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <a type="button" class="btn btn-danger " data-bs-toggle="modal" data-bs-target="#deleteModal@(p.AirportId)">
+                                                    <i class="fas fa-user-times"></i>
+                                                </a>
+                                        </td>
+                                        </tr>
+                                        <div class="modal fade" id="deleteModal@(p.AirportId)" tabindex="-1" aria-labelledby="deleteModalLabel@(p.AirportId)" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="deleteModalLabel@(p.AirportId)">Delete </h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        Are you sure you want to delete @(p.AirportName)?
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                        <a asp-controller="Airport" asp-action="Delete" asp-route-Id="@p.AirportId" class="btn btn-danger spin">Delete</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

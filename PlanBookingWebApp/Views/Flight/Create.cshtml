@@ -1,0 +1,58 @@
+﻿@model Flight
+
+<div class="accordion mt-4">
+    <div class="accordion-item">
+        <h1 class="accordion-header" id="headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Add Airport
+            </button>
+        </h1>
+        <div class="container-fluid  py-2">
+            <div class="row">
+                <div class="col-md-12 bg-light rounded">
+                    <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#" aria-current="page">Flight</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Create Flight</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionBasic">
+            <div class="accordion-body">
+                <div class="container-fluid">
+                    <form asp-action="Create" id="form-spinner" method="post" asp-controller="Flight">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label asp-for="FlightCode" class="control-label">>Flight Code</label>
+                                    <input type="text" asp-for="FlightCode" class="form-control" />
+                                    <span asp-validation-for="FlightCode" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="AirportId" class="control-label">Airport </label>
+                                    @Html.DropDownListFor(a => a.AirportId, ViewBag.airport as SelectList, new { @class = "form-control" })
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="PlaneId" class="control-label">Plane </label>
+                                    @Html.DropDownListFor(p => p.PlaneId, ViewBag.plane as SelectList, new { @class = "form-control" })
+                                    <span asp-validation-for="PlaneId" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Create" class="btn btn-primary mt-3" />
+                        </div>
+                    </form>
+
+                    <div>
+                        <a asp-action="Index">Back to List</a>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
