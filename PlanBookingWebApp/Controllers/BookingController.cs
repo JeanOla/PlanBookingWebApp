@@ -36,15 +36,8 @@ namespace PlanBookingWebApp.Controllers
         {
             try
             {
-                var flights = _repo.PopulateFlight();
-
-                if (flights == null || !flights.Any())
-                {
-                    TempData["WarningMessage"] = "No flights are available to create a booking.";
-                    return RedirectToAction("Index"); 
-                }
-
-                ViewBag.Flight = new SelectList(flights, "FlightId", "FlightCode");
+           
+                ViewBag.Flight = new SelectList(_repo.PopulateFlight(), "FlightId", "FlightCode");
 
                 var booking = new Booking();
 

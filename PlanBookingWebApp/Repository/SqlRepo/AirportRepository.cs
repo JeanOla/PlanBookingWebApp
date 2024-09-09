@@ -39,7 +39,6 @@ namespace PlanBookingWebApp.Repository.SqlRepo
 
         public async Task<Airport> DeleteAirportAsync(int id)
         {
-            // Asynchronously retrieve the speciality by Id
             var airport = await GetAirportByIdAsync(id);
 
             if (airport != null)

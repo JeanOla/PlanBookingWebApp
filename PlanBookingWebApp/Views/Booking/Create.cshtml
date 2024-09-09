@@ -33,6 +33,7 @@
                                 <div class="form-group">
                                     <label asp-for="FlightId" class="control-label">Flight Code </label>
                                     @Html.DropDownListFor(a => a.FlightId, ViewBag.flight as SelectList, new { @class = "form-control" })
+                                    <span asp-validation-for="FlightId" class="text-danger"></span>
                                 </div>
                             </div>
                         </div>

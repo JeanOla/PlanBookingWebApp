@@ -13,11 +13,11 @@ namespace PlanBookingWebApp.Models
         [RegularExpression("^[a-zA-Z.'\\s]+$", ErrorMessage = "Only letters, periods, and apostrophes are allowed.")]
         public string PassengerName { get; set; }
 
-        [ValidateNever] // This prevents model validation from running on this property
+        [ValidateNever]
         public Flight Flight { get; set; }
 
-        [Required(ErrorMessage = "Flight ID is required.")]
-        [Range(1, int.MaxValue, ErrorMessage = "Flight ID must be a positive number.")]
+        [Required(ErrorMessage = "Plane ID is required.")]
+        [Range(1, int.MaxValue, ErrorMessage = "Plane  must be filled.")]
         public int FlightId { get; set; }
     }
 }

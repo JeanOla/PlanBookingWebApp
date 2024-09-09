@@ -23,7 +23,6 @@ namespace PlanBookingWebApp.Repository.SqlRepo
             await _dbContext.SaveChangesAsync();
             return booking;
         }
-      //  Booking
         public async Task<Booking> GetBookingByIdAsync(int id)
         {
             return await _dbContext.booking.Include(a => a.Flight).AsNoTracking().FirstOrDefaultAsync(a => a.BookingId == id);

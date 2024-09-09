@@ -36,6 +36,7 @@
                                         <th scope="col" style="text-align: center" class="text-white">Flight Code</th>
                                         <th scope="col" style="text-align: center" class="text-white">Airport</th>
                                         <th scope="col" style="text-align: center" class="text-white">Plane</th>
+                                        <th scope="col" style="text-align: center" class="text-white">Pilot Name</th>
                                         <th scope="col" style="text-align: center" class="text-white">Action</th>
                                     </tr>
                                 </thead>
@@ -49,6 +50,7 @@
                                             <td style="text-align: center">@p.FlightCode</td>
                                             <td style="text-align: center">@(p.airport.AirportName)</td>
                                             <td style="text-align: center">@(p.plane.Code)</td>
+                                            <td style="text-align: center">@(p.Pilot)</td>
                                             <td style="text-align: center">
                                                 <a class="btn btn-secondary" asp-controller="Flight" title="Update" asp-action="Update" asp-route-Id="@p.FlightId">
                                                     <i class="fas fa-edit"></i>

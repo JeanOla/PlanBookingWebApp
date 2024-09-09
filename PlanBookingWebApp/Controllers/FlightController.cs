@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc.Rendering;
 using PlanBookingWebApp.Models;
 using PlanBookingWebApp.Repository;
-using PlanBookingWebApp.ViewModel;
 using System;
 
 namespace PlanBookingWebApp.Controllers
@@ -25,7 +24,7 @@ namespace PlanBookingWebApp.Controllers
             catch (Exception)
             {
                 TempData["ErrorMessage"] = "An error occurred while retrieving the flight list. Please try again later.";
-                return View("Error"); // Redirect to an error view or page if desired
+                return View("Error"); 
             }
         }
 
